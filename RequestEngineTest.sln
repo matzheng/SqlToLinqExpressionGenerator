@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RequestEngineTest", "RequestEngineTest\RequestEngineTest.csproj", "{75DAD10E-F0DD-4EDB-94C3-4C65C0B5FF13}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RequestEngine", "RequestEngine\RequestEngine.csproj", "{6B4497C7-66BE-47D6-B9A6-51D2F86073B4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{75DAD10E-F0DD-4EDB-94C3-4C65C0B5FF13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75DAD10E-F0DD-4EDB-94C3-4C65C0B5FF13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75DAD10E-F0DD-4EDB-94C3-4C65C0B5FF13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75DAD10E-F0DD-4EDB-94C3-4C65C0B5FF13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B4497C7-66BE-47D6-B9A6-51D2F86073B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B4497C7-66BE-47D6-B9A6-51D2F86073B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B4497C7-66BE-47D6-B9A6-51D2F86073B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B4497C7-66BE-47D6-B9A6-51D2F86073B4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
