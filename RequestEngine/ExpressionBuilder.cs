@@ -57,6 +57,24 @@ namespace RequestEngine
             return functor;
         }
 
+        public static Expression<Func<T, TResult>> FinalExpression<T, TResult>(string stringExpression)
+        {
+            if (stringExpression == null || stringExpression == string.Empty) return null;
+
+            List<Token> tokens = ExpressionParser.ParseExpression(stringExpression);
+            if (tokens.Count == 0) return null;
+
+            ParameterExpression context = Expression.Parameter(typeof(T), "context");
+            List<Expression> contexts = new List<Expression>();
+            contexts.Add(context);
+            Expression expression = BuildExpression(new ListSegment<Token>(tokens), contexts, typeof(TResult));
+
+            Expression<Func<T, TResult>> lambda =
+                Expression.Lambda<Func<T, TResult>>(expression, new ParameterExpression[] { context });
+            //Func<T, TResult> functor = lambda.Compile();
+
+            return lambda;
+        }
         /// <summary>
         /// Constructs Func<T1, T2, Result> functor based on stringExpression passed
         /// </summary>

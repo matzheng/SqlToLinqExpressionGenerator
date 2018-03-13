@@ -141,6 +141,9 @@ namespace RequestEngineTest
 
             //Also sorts details by their weight (type conversion demonstrated)
             Func<Detail, Detail, int> detsorter = ExpressionBuilder.BuildFunctor<Detail, Detail, int>("int(Weight-arg1.Weight)");
+
+            var testFilter = ExpressionBuilder.FinalExpression<Order, bool>("Project.City = \"London\" or Project.City ~ \"Berg\"");
+            //var c = Expression.Lambda
             details.Sort(detsorter.Invoke);
         }
     }
