@@ -27,7 +27,8 @@ namespace RequestEngine
         Substruct,
         Mult,
         Div,
-        Like
+        Like,
+        NotLike
     }
 
     enum RecommendedInputTypes
@@ -69,6 +70,7 @@ namespace RequestEngine
                 case "*": return new OperatorToken(OperatorType.Mult);
                 case "/": return new OperatorToken(OperatorType.Div);
                 case "~": return new OperatorToken(OperatorType.Like);
+                case "!": return new OperatorToken(OperatorType.NotLike);
                 default: return null;
             }
         }
@@ -119,7 +121,9 @@ namespace RequestEngine
                     case OperatorType.Substruct: return 30;
                     case OperatorType.Mult:
                     case OperatorType.Div: return 35;
-                    case OperatorType.Like: return 50;
+                    case OperatorType.Like:
+                    case OperatorType.NotLike:  return 50;
+
                     default: return 25;
                 }
             }
@@ -160,6 +164,7 @@ namespace RequestEngine
                     case OperatorType.Equal:
                     case OperatorType.NotEqual: return RecommendedInputTypes.Any;
                     case OperatorType.Like:
+                    case OperatorType.NotLike:
                     default: return RecommendedInputTypes.Any;
                 }
             }
@@ -193,7 +198,15 @@ namespace RequestEngine
                         var constantExpression = argRight as ConstantExpression;
                         var containsFilterExpression = Expression.Constant(constantExpression.Value, typeof(string));
                         return Expression.Call(argLeft, method, containsFilterExpression);
-                    }
+                }
+                case OperatorType.NotLike:
+                {
+                    var method = typeof(string).GetMethod("Contains", new[] { typeof(string) });
+                    var constantExpression = argRight as ConstantExpression;
+                    var containsFilterExpression = Expression.Constant(constantExpression.Value, typeof(string));
+                    var falseExpression = Expression.Constant(false, typeof(bool));
+                    return Expression.Equal(Expression.Call(argLeft, method, containsFilterExpression), falseExpression);
+                }
                 default: throw new NotImplementedException(operatorType.ToString() + " operation is not implemented");
             }
         }
